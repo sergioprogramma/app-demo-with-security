@@ -12,9 +12,9 @@ public class DataSourceConfig {
     public DataSource getDataSource() {
         return DataSourceBuilder.create()
           .driverClassName("com.mysql.cj.jdbc.Driver")
-          .url("jdbc:mysql://localhost:3306/spring_security_demo_plaintext?allowPublicKeyRetrieval=true&useSSL=false")
-          .username("root")
-          .password("rootadmin")
+          .url("#")
+          .username("#")
+          .password("#")
           .build();	
     }
 }
