@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Owner Home Page</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Owner Home Page</h3>
+	<hr>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Supplier ID</th>
+				<th>Company Name</th>
+				<th>City</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempSupplier : ${suppliers}">
+				
+				<td th:text="${tempSupplier.supplierid}" />
+				<td th:text="${tempSupplier.companyName}" />		
+				<td th:text="${tempSupplier.city}" />	
+			</tr>
+		</tbody>
+	</table>
+
+		<h3>Contact Details</h3>
+		
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Supplier ID</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempEmployee : ${employees}">
+			
+				<td th:text="${tempEmployee.id}" />
+				<td th:text="${tempEmployee.email}" />		
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	<form th:action="@{/logout}" method="post">
+    <input type="submit" value="LOGOUT"></input>
+    </form>
+	
+</body>
+</html>
+
+
+

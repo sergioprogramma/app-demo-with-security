@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: sergioburigana
+Build-Jdk: 17.0.5
+Implementation-Title: AppDemo
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.app.demo
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/app-demo-with-securiy
+Created-By: Maven Integration for Eclipse
+

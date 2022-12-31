@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>This is your Home Page!</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Owner Home Page</h3>
+	<div>
+	<h6>Click this link if you're an admin: </h6>
+	<a href="/employees/list">Click Here to manage the clients info</a>
+	</div>
+	
+	<div>
+	<h6>Click here if you are a supplier: </h6>
+	<a href="/home-supplier/">Click Here to access your home page!</a>
+	</div>
+	
+	<div>
+  	<h6>Click here if you are a store owner: </h6>
+	<a href="/home-owner/">Click Here to access your home page!</a>
+	</div>
+	
+		<form th:action="@{/logout}" method="post">
+    	<input type="submit" value="LOGOUT"></input>
+    	</form>
+
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
