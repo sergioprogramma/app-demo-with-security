@@ -18,6 +18,7 @@
 
 	<h3>Employee Directory</h3>
 	<hr>
+
 	
 	<!-- Add a button -->
 	<a th:href="@{/employees/showFormForAdd}"
@@ -35,7 +36,14 @@
 		Check Store Owners
 	</a>
 	
+	<form th:action="@{/employees/search}" method="post">
+	 			Search by First Name: <input type="text" name="theSearchFirstName" />
+	  			Search by Last Name: <input type="text" name="theSearchLastName" />
+                Search by Email: <input type="text" name="theSearchEmail" />
+                
+                <input type="submit" value="Search"/>
 	
+	</form>
 	
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">

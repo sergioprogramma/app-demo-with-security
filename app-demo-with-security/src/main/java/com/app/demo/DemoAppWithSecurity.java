@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoAppWithSecurity {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(DemoAppWithSecurity.class, args);
 	}
-	
 }

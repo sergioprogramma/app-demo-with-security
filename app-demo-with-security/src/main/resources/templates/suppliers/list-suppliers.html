@@ -29,6 +29,13 @@
 		Back to Employees List
 	</a>
 	
+	<h5>Filter By Number Of Employees:</h5>
+	<form th:action="@{/suppliers/filterNumEmployees}" method="POST">
+    	<button name="max_value" value="200">200</button>
+    	<button name="max_value" value="100">100</button>
+    	<button name="max_value" value="100">50</button>
+	</form>
+	
 	
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
@@ -36,6 +43,7 @@
 				<th>Company ID</th>
 				<th>Company Name</th>
 				<th>City</th>
+				<th>Employees Number</th>
 				<th>Action</th>
 			</tr>
 		</thead>
@@ -45,7 +53,9 @@
 				
 				<td th:text="${tempSupplier.supplierid}" />
 				<td th:text="${tempSupplier.companyName}" />		
-				<td th:text="${tempSupplier.city}" />	
+				<td th:text="${tempSupplier.city}" />
+				<td th:text="${tempSupplier.employees_number}" />	
+					
 		
 				<td>
 				<div class="row">

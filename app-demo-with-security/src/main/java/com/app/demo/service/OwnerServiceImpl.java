@@ -25,7 +25,7 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public Owner findById(int theId) {
+	public Owner findById(String theId) {
 		Optional<Owner> result = ownerRepository.findById(theId);
 		
 		Owner theOwner = null;
@@ -47,8 +47,13 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public void deleteById(int theId) {
+	public void deleteById(String theId) {
 		ownerRepository.deleteById(theId);
+	}
+
+	@Override
+	public List<Owner> findByCity(String city) {
+		return ownerRepository.findByCity(city);
 	}
 
 

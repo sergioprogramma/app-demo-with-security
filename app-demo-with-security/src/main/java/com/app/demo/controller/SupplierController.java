@@ -46,10 +46,20 @@ public class SupplierController {
 		
 		return "suppliers/supplier-form";
 	}
+	
+	@PostMapping("/filterNumEmployees")
+	public String filterNumEmployees(@RequestParam("max_value") Integer max_value, Model theModel) {
+		
+		List<Supplier> theSuppliers = supplierService.findByNumEmployees(max_value);
+		
+		theModel.addAttribute(theSuppliers);
+		
+		return "suppliers/list-suppliers";
+	}
 
 
 	@PostMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("supplierId") int theId,
+	public String showFormForUpdate(@RequestParam("supplierId") String theId,
 									Model theModel) {
 		try {
 		// get the employee from the service

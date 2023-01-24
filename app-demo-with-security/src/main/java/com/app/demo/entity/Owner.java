@@ -5,7 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
+
+
 @Entity
+@SQLDelete(sql = "UPDATE employee SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @Table(name="owner")
 public class Owner {
 
@@ -13,7 +20,7 @@ public class Owner {
 	
 	@Id
 	@Column(name="owner_id")
-	private int ownerid;
+	private String ownerid;
 	
 	@Column(name="store_name")
 	private String storeName;
@@ -21,13 +28,17 @@ public class Owner {
 	@Column(name="city")
 	private String city;
 	
+	@Column(name="deleted")
+    private boolean deleted = Boolean.FALSE;
+	
+	
 	// define constructors
 	
 	public Owner() {
 		
 	}
 	
-	public Owner(int id, String storeName, String city) {
+	public Owner(String id, String storeName, String city) {
 		this.ownerid = id;
 		this.storeName = storeName;
 		this.city = city;
@@ -49,11 +60,11 @@ public class Owner {
 		this.city = city;
 	}
 
-	public int getOwnerid() {
+	public String getOwnerid() {
 		return ownerid;
 	}
 
-	public void setOwnerid(int ownerid) {
+	public void setOwnerid(String ownerid) {
 		this.ownerid = ownerid;
 	}
 

@@ -20,13 +20,9 @@ import com.app.demo.service.SupplierService;
 public class EmployeeController {
 
 	private EmployeeService employeeService;
-	private SupplierService supplierService;
-	private OwnerService ownerService;
 	
 	public EmployeeController(EmployeeService theEmployeeService, SupplierService theSupplierService, OwnerService theOwnerService) {
 		employeeService = theEmployeeService;
-		supplierService = theSupplierService;
-		ownerService = theOwnerService;
 	}
 	
 	// add mapping for "/list"
@@ -38,6 +34,18 @@ public class EmployeeController {
 		List<Employee> theEmployees = employeeService.findAll();
 		
 		// add to the spring model
+		theModel.addAttribute("employees", theEmployees);
+		
+		return "employees/list-employees";
+	}
+	
+	@PostMapping("/search")
+	public String searchCustomer(@RequestParam("theSearchEmail")String email, @RequestParam("theSearchFirstName") String first_name, @RequestParam("theSearchLastName") String last_name, Model theModel) {
+		
+		//search customer
+		List<Employee> theEmployees = employeeService.findByCustom(first_name, last_name, email);
+		
+		//add customer to model
 		theModel.addAttribute("employees", theEmployees);
 		
 		return "employees/list-employees";
@@ -56,7 +64,7 @@ public class EmployeeController {
 
 
 	@PostMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("employeeId") int theId,
+	public String showFormForUpdate(@RequestParam("employeeId") String theId,
 									Model theModel) {
 		
 		// get the employee from the service
@@ -82,39 +90,10 @@ public class EmployeeController {
 	
 	
 	@PostMapping("/delete")
-	public String delete(@RequestParam("employeeId") int theId) {
+	public String delete(@RequestParam("employeeId") String theId) {
+	
+		employeeService.deleteById(theId);
 		
-		// delete the employee
-		
-		try { 
-			
-			supplierService.deleteById(theId);
-			ownerService.deleteById(theId);
-			employeeService.deleteById(theId);
-			
-		} catch (Exception e) {
-			System.out.println("they are not both suppliers and owners");
-		}
-			
-		try {
-		
-			supplierService.deleteById(theId);
-			employeeService.deleteById(theId);
-				
-		} catch (Exception i) {
-			System.out.println("They are not suppliers");
-			}
-		
-		try { 
-			
-			ownerService.deleteById(theId);
-			employeeService.deleteById(theId);
-			
-		} catch (Exception a) {
-				employeeService.deleteById(theId);
-			}
-		
-		// redirect to /employees/list
 		return "redirect:/employees/list";
 		
 	}

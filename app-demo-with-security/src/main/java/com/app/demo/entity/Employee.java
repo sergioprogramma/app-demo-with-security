@@ -3,20 +3,25 @@ package com.app.demo.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
+@SQLDelete(sql = "UPDATE employee SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @Table(name="employee")
 public class Employee {
 
 	// define fields
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")	@Column(name="id")
+	private String id;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -27,13 +32,22 @@ public class Employee {
 	@Column(name="email")
 	private String email;
 	
+	@Column(name="num_employees")
+	private String employees_number;
+	
+	@Column(name="deleted")
+    private boolean deleted = Boolean.FALSE;
+
+	
+	
+	
 	// define constructors
 	
 	public Employee() {
 		
 	}
 	
-	public Employee(int id, String firstName, String lastName, String email) {
+	public Employee(String id, String firstName, String lastName, String email) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -49,11 +63,11 @@ public class Employee {
 
 	// define getter/setter
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

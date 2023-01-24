@@ -8,11 +8,15 @@ public interface EmployeeService {
 
 	public List<Employee> findAll();
 	
-	public Employee findById(int theId);
-	
+	public Employee findById(String theId);
+		
 	public void save(Employee theEmployee);
 	
-	public void deleteById(int theId);
+	public void deleteById(String theId);
+	
+	public List<Employee> findByCustom(String first_name, String last_name, String email);
+	
+
 
 	
 }

@@ -28,6 +28,11 @@
 		class="btn btn-primary btn-sm mb-3">
 		Back to Employees List
 	</a>
+	<h5>Filter By Popular City:</h5>
+	<form th:action="@{/owners/findByCity}" method="POST">
+    	<button name="theSearchCity" value="Vaughan">Vaughan</button>
+    	<button name="theSearchCity" value="Hamilton">Hamilton</button>
+	</form>
 	
 	
 	

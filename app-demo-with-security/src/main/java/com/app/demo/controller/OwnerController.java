@@ -37,6 +37,16 @@ public class OwnerController {
 		return "owners/list-owners";
 	}
 	
+	@PostMapping("/findByCity")
+	public String findByCity(@RequestParam("theSearchCity") String city, Model theModel) {
+		
+		List<Owner> theOwners = ownerService.findByCity(city);
+		
+		theModel.addAttribute("owners", theOwners);
+		
+		return "owners/list-owners";
+	}
+	
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
 		
@@ -50,7 +60,7 @@ public class OwnerController {
 
 
 	@PostMapping("/showFormForUpdate")
-	public String showFormForUpdate(@RequestParam("ownerId") int theId,
+	public String showFormForUpdate(@RequestParam("ownerId") String theId,
 									Model theModel) {
 		// get the employee from the service
 		try { 
@@ -79,7 +89,7 @@ public class OwnerController {
 	
 	
 	@PostMapping("/delete")
-	public String delete(@RequestParam("ownerId") int theId) {
+	public String delete(@RequestParam("ownerId") String theId) {
 		
 		// delete the employee
 		ownerService.deleteById(theId);

@@ -8,10 +8,12 @@ public interface SupplierService {
 
 	public List<Supplier> findAll();
 	
-	public Supplier findById(int theId);
+	public Supplier findById(String theId);
 	
 	public void save(Supplier theSupplier);
 	
-	public void deleteById(int theId);
+	public void deleteById(String theId);
+	
+	public List<Supplier> findByNumEmployees(Integer max_value);
 	
 }

@@ -38,15 +38,15 @@ public class HomeSupplier {
 		
 		System.out.println(theOwners);
 		
-		List<Integer> ids = new LinkedList<Integer>();
+		List<String> ids = new LinkedList<String>();
 		for (Owner o : theOwners) {
-		    ids.add((int) o.getOwnerid());
+		    ids.add((String) o.getOwnerid());
 		}
 		
 		// get employees from db
 		List<Employee> theEmployeesFiltered = new LinkedList<Employee>();
 
-		for (Integer i : ids) {
+		for (String i : ids) {
 			theEmployeesFiltered.add(employeeService.findById(i));
 		}
 				

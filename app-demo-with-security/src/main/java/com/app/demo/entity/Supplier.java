@@ -5,7 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 @Entity
+@SQLDelete(sql = "UPDATE employee SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 @Table(name="supplier")
 public class Supplier {
 
@@ -13,7 +18,7 @@ public class Supplier {
 	
 	@Id
 	@Column(name="supplier_id")
-	private int supplierid;
+	private String supplierid;
 	
 	@Column(name="company_name")
 	private String companyName;
@@ -21,13 +26,16 @@ public class Supplier {
 	@Column(name="city")
 	private String city;
 	
+	@Column(name="deleted")
+    private boolean deleted = Boolean.FALSE;
+	
 	// define constructors
 	
 	public Supplier() {
 		
 	}
 	
-	public Supplier(int supplierid, String companyName, String city) {
+	public Supplier(String supplierid, String companyName, String city) {
 		this.supplierid = supplierid;
 		this.companyName = companyName;
 		this.city = city;
@@ -43,11 +51,11 @@ public class Supplier {
 
 	// define getter/setter
 
-	public int getSupplierid() {
+	public String getSupplierid() {
 		return supplierid;
 	}
 
-	public void setSupplierid(int supplierid) {
+	public void setSupplierid(String supplierid) {
 		this.supplierid = supplierid;
 	}
 	

@@ -25,7 +25,7 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public Supplier findById(int theId) {
+	public Supplier findById(String theId) {
 		Optional<Supplier> result = supplierRepository.findById(theId);
 		
 		Supplier theSupplier = null;
@@ -47,8 +47,13 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public void deleteById(int theId) {
+	public void deleteById(String theId) {
 		supplierRepository.deleteById(theId);
+	}
+
+	@Override
+	public List<Supplier> findByNumEmployees(Integer max_value) {
+		return supplierRepository.findByNumEmployees(max_value);
 	}
 
 
